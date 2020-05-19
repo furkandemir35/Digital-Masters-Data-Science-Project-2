@@ -48,3 +48,6 @@ models/train_classifier.py: The Machine Learning pipeline used to fit, tune, eva
 app/templates/*.html: HTML templates for the web app.
 
 run.py: Start the Python server for the web app and prepare visualizations.
+
+### Student Notes:
+My GitHub link:https://github.com/furkandemir35?tab=repositories
