@@ -9,9 +9,11 @@ def load_data(messages_filepath, categories_filepath):
     return messages,categories
 
 def clean_data(messages,categories):
+    '''
+    Input: messages,categories as a raw
+    Returns: Cleaned Dataframe containing the message along with their categories
+    '''
     
-    #Returns: Cleaned Dataframe containing the message along with their categories
- 
     df = pd.merge(messages,categories,on='id',how='left')
     categories = df.categories.str.split(';',expand=True)
     row = categories.iloc[0]
@@ -31,9 +33,9 @@ def clean_data(messages,categories):
     return df
 
 def save_data(df, database_filename):
-    
-    #Save dataframe to a database
-    
+    '''
+    Save dataframe to a database
+    '''
     engine = create_engine('sqlite:///'+database_filename)
     df.to_sql('TableName', engine, index=False)
 
