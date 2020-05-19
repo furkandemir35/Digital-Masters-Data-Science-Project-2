@@ -41,9 +41,10 @@ lemmatiser = WordNetLemmatizer()
 cachedStopWords = stopwords.words("english")
 
 def load_data(database_filepath):
-    
-    #Returns: Dataframe splitted into message and their tags
-    
+    '''
+    Input: Where you stored the DB
+    Returns: Dataframe splitted into message and their tags
+    '''
     engine = create_engine('sqlite:///'+database_filepath)
     name_of_the_table='TableName'
     df = pd.read_sql_table(name_of_the_table,engine)
@@ -53,8 +54,10 @@ def load_data(database_filepath):
     return X,Y,categories,df
 
 def tokenize(text):
-
-    #Returns: Tokenized Text,post usage of lemmatiser
+    '''
+    Input: Text
+    Returns: Tokenized Text,post usage of lemmatiser
+    '''
     
     posts = text
     tokens = re.sub('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', 'link', posts)
@@ -79,9 +82,11 @@ def build_model():
 
 
 def evaluate_model(model, X_test, X_train, category_names,train,test):
-
-    #Returns: Tuned Model
-       
+    '''
+    Input: Current model to be tuned
+    Returns: Tuned Model
+    '''
+    
     categories=category_names
     # compute the testing accuracy
     prediction = model.predict(X_test)
